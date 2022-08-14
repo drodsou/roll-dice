@@ -1,0 +1,42 @@
+body {
+  background-color: black;
+  color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:98vh;
+}
+
+
+main {
+  border: 1px solid lightgrey;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  /* filter: blur(2px); */
+  /* transform: rotate(60deg); */ 
+  cursor: pointer;
+  user-select: none;
+
+  /* touch flash */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+
+#settings {
+  margin-top: 20px;
+}
+
+#settings input{
+  font-size: 20px;
+  width: 40px;
+  text-align: center;
+  background-color: black;
+  color: lightgrey;
+  border: 0;
+
+}
