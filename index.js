@@ -57,7 +57,7 @@ async function doNewValue() {
 
   if (window.innerHeight > window.innerWidth) {
     // on my mobile there is a little delay playing sounds
-    await wait(100);
+    await wait(225);
   }
   data.rolling = false;
   render();
