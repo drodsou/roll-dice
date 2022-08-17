@@ -55,7 +55,10 @@ async function doNewValue() {
   else if (data.value === data.max) { sounds.success.play() }
   else { sounds.normal.play() }
 
-  await wait(100);
+  if (window.innerHeight > window.innerWidth) {
+    // on my mobile there is a little delay playing sounds
+    await wait(100);
+  }
   data.rolling = false;
   render();
 }
