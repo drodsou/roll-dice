@@ -5,7 +5,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height:98vh;
+  height:85vh;
 }
 
 
@@ -24,6 +24,12 @@ main {
 
   /* touch flash */
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  background-color: #333;
+}
+
+.rolling {
+  background-color: #000;
+  border-color: #000;
 }
 
 

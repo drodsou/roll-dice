@@ -1,9 +1,17 @@
+const sounds = {
+  roll: new Audio("sounds/roll.mp3"),
+  normal: new Audio("sounds/normal.mp3"),
+  fail: new Audio("sounds/fail.mp3"),
+  success: new Audio("sounds/success.mp3"),
+}
+
 
 // -- data
 const data = {
   min: 0,
   max:4,
-  value : 0
+  value : 0,
+  rolling : false
 }
 
 window.data = data; // debug
@@ -19,7 +27,13 @@ const elMax = document.querySelector('#max');
 function render() {
   elMin.value = data.min;
   elMax.value = data.max;
-  elValue.innerText = data.value;
+  if (data.rolling) {
+    elValue.innerText = '...';
+    elValue.classList.add('rolling');
+  } else {
+    elValue.innerText = data.value;
+    elValue.classList.remove('rolling');
+  }
 }
 
 //  -- actions
@@ -30,12 +44,20 @@ function doUpdateData() {
   render();
 }
 
-function doNewValue() {
-  elValue.innerText = '';
-  setTimeout(()=>{
-    data.value = Math.floor( (Math.random()) * (data.max -  data.min + 1))  + data.min
-    render();
-  },300);
+async function doNewValue() {
+  data.rolling = true;
+  sounds.roll.play();
+  render();
+
+  await wait(500);
+  data.value = Math.floor( (Math.random()) * (data.max -  data.min + 1))  + data.min
+  if (data.value === data.min) { sounds.fail.play() }
+  else if (data.value === data.max) { sounds.success.play() }
+  else { sounds.normal.play() }
+
+  await wait(100);
+  data.rolling = false;
+  render();
 }
 
 // -- events
@@ -45,3 +67,12 @@ elMax.addEventListener('change', doUpdateData);
 
 // -- start
 render();
+
+
+// -- helper 
+
+function wait(ms) {
+  return new Promise(resolve=>setTimeout(resolve,ms));
+}
+
+
